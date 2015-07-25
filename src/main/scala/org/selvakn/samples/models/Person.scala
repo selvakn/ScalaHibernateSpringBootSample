@@ -1,14 +1,9 @@
 package org.selvakn.samples.models
 
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.{Entity, Table}
 
 @Entity
 @Table(name = "persons")
-case class Person(firstName: String, lastName: String) {
-  @Id
-  var id: Long = _
-
+case class Person(firstName: String, lastName: String) extends BaseModel {
   def this() = this(null, null)
 }
