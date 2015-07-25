@@ -1,0 +1,11 @@
+/.gradle/
+/bin/
+/build/
+/out/
+/*.log
+.idea
+*.iml
+*.ipr
+*.iws
+**/.DS_Store
+gradle/

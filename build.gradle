@@ -1,0 +1,54 @@
+apply plugin: 'idea'
+apply plugin: 'scala'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
+
+buildscript {
+    ext {
+        springBootVersion = '1.2.5.RELEASE'
+        jacksonVersion = '2.5.1'
+    }
+    repositories {
+        maven {
+            url 'http://repo.spring.io/plugins-release'
+        }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+jar {
+    baseName = 'ScalaHibernateSpringBootSample'
+    version = '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.liquibase:liquibase-core')
+    runtime('org.hsqldb:hsqldb')
+    compile('org.scala-lang:scala-library:2.11.7')
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.scalatest:scalatest_2.11:2.2.4")
+}
+
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
