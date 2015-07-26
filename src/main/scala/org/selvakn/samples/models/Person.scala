@@ -8,5 +8,4 @@ import org.selvakn.NoArgsConstructor
 @Entity
 @Table(name = "persons")
 @NoArgsConstructor
-case class Person(firstName: String, lastName: String) extends BaseModel {
-}
+case class Person(firstName: String, lastName: String) extends BaseModel
