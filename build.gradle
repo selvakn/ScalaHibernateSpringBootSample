@@ -32,6 +32,17 @@ jar {
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'lib'
+    }
+}
+
+configurations {
+    scalaCompilerPlugins { transitive = false }
+}
+
+def scalacXPlugins() {
+    configurations.scalaCompilerPlugins.files.collect { "\"-Xplugin:${it.path}\"" }
 }
 
 dependencies {
@@ -39,12 +50,16 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.liquibase:liquibase-core')
     runtime('org.hsqldb:hsqldb')
+
     compile('org.scala-lang:scala-library:2.11.7')
+    compile([name: 'noargsconstructor_2.11-0.1-SNAPSHOT'])
+    scalaCompilerPlugins('org.scalamacros:paradise_2.11.7:2.1.0-M5')
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.scalatest:scalatest_2.11:2.2.4")
 }
 
+compileScala.scalaCompileOptions.additionalParameters = scalacXPlugins()
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
