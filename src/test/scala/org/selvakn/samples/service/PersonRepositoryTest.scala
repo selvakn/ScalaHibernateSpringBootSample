@@ -1,6 +1,8 @@
 package org.selvakn.samples.service
 
+import org.junit.runner.RunWith
 import org.scalatest.FunSpec
+import org.scalatest.junit.JUnitRunner
 import org.selvakn.samples.Config
 import org.selvakn.samples.models.Person
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,6 +11,7 @@ import org.springframework.test.context.{ContextConfiguration, TestContextManage
 
 import scala.collection.JavaConverters._
 
+@RunWith(classOf[JUnitRunner])
 @ContextConfiguration(loader = classOf[SpringApplicationContextLoader], classes = Array(classOf[Config]))
 class PersonRepositoryTest extends FunSpec {
 
