@@ -1,11 +1,16 @@
 package org.selvakn.samples.models
 
-import javax.persistence.{Entity, Table}
-
-import org.selvakn.NoArgsConstructor
+import javax.persistence._
 
 
 @Entity
 @Table(name = "persons")
-@NoArgsConstructor
-case class Person(firstName: String, lastName: String) extends BaseModel
+case class Person(firstName: String, lastName: String) extends BaseModel[Person] {
+
+  def this() = this(null, null)
+
+  def updateName(newName: String) = {
+    this.copy(firstName = newName)
+  }
+}
+
