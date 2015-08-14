@@ -9,15 +9,12 @@ import scala.reflect.ClassTag
 
 @MappedSuperclass
 abstract class BaseModel[A <: BaseModel[A]](implicit tag:ClassTag[A]) {
-
   @Id
   @BeanProperty
   var id: Long = _
 
-
   @Transient
   val entityManager = new ApplicationContextProvider().getApplicationContext.getBean(classOf[EntityManager])
-
 
   @Transient
   val entity = entityManager.find(tag.runtimeClass, id)
